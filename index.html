@@ -3,113 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We_Theatre</title>
+    <title>WE_THEATRE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* Global Styles */
         body {
-            background: #121212;
+            background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+            background-attachment: fixed;
             color: #ffffff;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            letter-spacing: 2px;
+        }
+
+        /* Main Container */
         .container {
-            background: rgba(20, 20, 20, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 50px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            width: 50%;
+            background: rgba(20, 20, 20, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
-        h1 {
-            font-size: 2.5em;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+
+        /* Glowing Subtitle */
+        .glowing-text {
+            font-size: 1.3em;
+            color: #00ccff;
+            text-shadow: 0 0 12px rgba(0, 204, 255, 0.9);
+            font-weight: bold;
+            margin-bottom: 20px;
         }
+
+        /* Input & Button Styling */
         input, button, select {
-            margin: 10px;
-            padding: 10px;
+            margin: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 90%;
             transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
         }
+
         input, select {
-            width: 80%;
-            background: #1e1e1e;
+            background: #222;
             color: #fff;
-            border: 1px solid #333;
-        }
-        button {
-            background: #333;
-            color: #fff;
-            cursor: pointer;
             border: 1px solid #444;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
+
+        input:focus, select:focus {
+            outline: none;
+            border: 1px solid #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+        }
+
+        button {
+            background: #00ccff;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            border: 1px solid #0077b3;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
+            font-size: 1.1em;
+        }
+
         button:hover {
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
-            transform: scale(1.05);
-            background: #444;
+            background: #0099ff;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.9);
+            transform: scale(1.07);
         }
+
+        /* Series Fields */
+        .series-fields {
+            display: none;
+            justify-content: space-between;
+            width: 90%;
+        }
+
+        /* Custom Number Input Styling */
+        .number-input {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 45%;
+        }
+
+        .number-input input {
+            appearance: none;
+            -moz-appearance: textfield;
+            background: #222;
+            color: #00ccff;
+            border: 2px solid #00ccff;
+            padding: 12px;
+            font-size: 1.2em;
+            text-align: center;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+        }
+
+        .number-input input:focus {
+            outline: none;
+            border-color: #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Remove up/down arrows from number inputs */
+        .number-input input::-webkit-outer-spin-button,
+        .number-input input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input input {
+            -moz-appearance: textfield; /* Firefox */
+        }
+
+        /* Result Styling */
         .result {
             margin-top: 20px;
+            width: 100%;
         }
+
+        /* Iframe Size */
         iframe {
-            width: 80%;
-            height: 500px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
-        .hidden {
-            display: none;
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 25px;
+            }
+            .glowing-text {
+                font-size: 1.1em;
+            }
+            input, button, select {
+                font-size: 1em;
+                padding: 12px;
+            }
+            iframe {
+                height: 300px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">WE_THEATRE</div>
+
     <div class="container">
-        <h1>We_Theatre</h1>
-        
-        <p>Select Type:</p>
+        <p class="glowing-text">Enter Movie or Series Name to Watch</p>
+
         <select id="type" onchange="toggleSeriesFields()">
             <option value="movie">Movie</option>
             <option value="series">Series</option>
         </select>
-        <p>Enter IMDb ID:</p>
-        <input type="text" id="imdbId" placeholder="Enter IMDb ID">
-        <div id="seriesFields" class="hidden">
-            <p>Enter Season Number:</p>
-            <input type="number" id="season" placeholder="Season Number">
-            <p>Enter Episode Number:</p>
-            <input type="number" id="episode" placeholder="Episode Number">
+
+        <input type="text" id="movieName" placeholder="Enter Movie/Series Name">
+        
+        <div id="seriesFields" class="series-fields">
+            <div class="number-input">
+                <input type="number" id="season" placeholder="Season" min="1">
+            </div>
+            <div class="number-input">
+                <input type="number" id="episode" placeholder="Episode" min="1">
+            </div>
         </div>
-        <button onclick="generateIframe()">Watch Now</button>
+
+        <button onclick="fetchIMDbId()">HAVE FUN</button>
         <div class="result" id="result"></div>
     </div>
+
     <script>
         function toggleSeriesFields() {
             let type = document.getElementById("type").value;
             let seriesFields = document.getElementById("seriesFields");
-            if (type === "series") {
-                seriesFields.classList.remove("hidden");
-            } else {
-                seriesFields.classList.add("hidden");
-            }
+            seriesFields.style.display = type === "series" ? "flex" : "none";
         }
-        
-        function generateIframe() {
-            let imdbId = document.getElementById("imdbId").value.trim();
+
+        async function fetchIMDbId() {
+            let movieName = document.getElementById("movieName").value.trim();
+            let type = document.getElementById("type").value;
             let season = document.getElementById("season").value.trim();
             let episode = document.getElementById("episode").value.trim();
-            let type = document.getElementById("type").value;
-            
-            if (!imdbId) {
-                alert("Please enter a valid IMDb ID");
+
+            if (!movieName) {
+                alert("Please enter a movie or series name.");
                 return;
             }
-            
-            let iframeSrc = (type === "series" && season && episode) 
-                ? `https://vidsrc.me/embed/tv?imdb=${imdbId}&season=${season}&episode=${episode}`
-                : `https://vidsrc.me/embed/movie?imdb=${imdbId}`;
-            
-            document.getElementById("result").innerHTML = `<iframe src="${iframeSrc}" allowfullscreen></iframe>`;
+
+            let apiKey = "e6c582c8"; // Replace with your OMDb API key
+            let url = `https://www.omdbapi.com/?t=${encodeURIComponent(movieName)}&apikey=${apiKey}`;
+
+            try {
+                let response = await fetch(url);
+                let data = await response.json();
+
+                if (!data.imdbID) {
+                    alert("IMDb ID not found. Try another movie/series.");
+                    return;
+                }
+
+                let imdbId = data.imdbID;
+                let iframeSrc = type === "series" && season && episode
+                    ? `https://vidsrc.me/embed/tv?imdb=${imdbId}&season=${season}&episode=${episode}`
+                    : `https://vidsrc.me/embed/movie?imdb=${imdbId}`;
+
+                document.getElementById("result").innerHTML = `<iframe src="${iframeSrc}" allowfullscreen></iframe>`;
+            } catch (error) {
+                alert("Something went wrong. Try again.");
+            }
         }
     </script>
 </body>
