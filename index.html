@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We_Theatre</title>
+    <style>
+        body {
+            background: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        .container {
+            background: rgba(20, 20, 20, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            width: 50%;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        input, button, select {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+        input, select {
+            width: 80%;
+            background: #1e1e1e;
+            color: #fff;
+            border: 1px solid #333;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid #444;
+        }
+        button:hover {
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            background: #444;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        iframe {
+            width: 80%;
+            height: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>We_Theatre</h1>
+        
+        <p>Select Type:</p>
+        <select id="type" onchange="toggleSeriesFields()">
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+        </select>
+        <p>Enter IMDb ID:</p>
+        <input type="text" id="imdbId" placeholder="Enter IMDb ID">
+        <div id="seriesFields" class="hidden">
+            <p>Enter Season Number:</p>
+            <input type="number" id="season" placeholder="Season Number">
+            <p>Enter Episode Number:</p>
+            <input type="number" id="episode" placeholder="Episode Number">
+        </div>
+        <button onclick="generateIframe()">Watch Now</button>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        function toggleSeriesFields() {
+            let type = document.getElementById("type").value;
+            let seriesFields = document.getElementById("seriesFields");
+            if (type === "series") {
+                seriesFields.classList.remove("hidden");
+            } else {
+                seriesFields.classList.add("hidden");
+            }
+        }
+        
+        function generateIframe() {
+            let imdbId = document.getElementById("imdbId").value.trim();
+            let season = document.getElementById("season").value.trim();
+            let episode = document.getElementById("episode").value.trim();
+            let type = document.getElementById("type").value;
+            
+            if (!imdbId) {
+                alert("Please enter a valid IMDb ID");
+                return;
+            }
+            
+            let iframeSrc = (type === "series" && season && episode) 
+                ? `https://vidsrc.me/embed/tv?imdb=${imdbId}&season=${season}&episode=${episode}`
+                : `https://vidsrc.me/embed/movie?imdb=${imdbId}`;
+            
+            document.getElementById("result").innerHTML = `<iframe src="${iframeSrc}" allowfullscreen></iframe>`;
+        }
+    </script>
+</body>
+</html>
